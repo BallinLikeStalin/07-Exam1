@@ -2,8 +2,8 @@
 Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Eric Lee.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -90,20 +90,54 @@ def problem3(point, length, delta, window):
     # --------------------------------------------------------------------------
     # TODO: 2. Implement and test this function.
     # TODO (continued):  IMPORTANT: Use this ITERATIVE ENHANCEMENT PLAN:
-    # TODO (continued):    1. Make the sole VERTICAL line appear,
-    # TODO (continued):         with thickness 3.
-    # TODO (continued):    2. Make the FIRST horizontal line appear.
-    # TODO (continued):    3. Make MORE horizontal lines appear,
+    # done (continued):    1. Make the sole VERTICAL line appear,
+    # done (continued):         with thickness 3.
+    # done (continued):    2. Make the FIRST horizontal line appear.
+    # done (continued):    3. Make MORE horizontal lines appear,
     # TODO (continued):         each delta below the previous one.
-    # TODO (continued):    4. Make each successive horizontal line
-    # TODO (continued):         20 pixels longer than the previous one.
-    # TODO (continued):    5. Make the right NUMBER of horizontal lines.
-    # TODO (continued):    6. Make the horizontal lines each have thickness 3
-    # TODO (continued):         and colors per the specified pattern.
+    # done (continued):    4. Make each successive horizontal line
+    # done (continued):         20 pixels longer than the previous one.
+    # done (continued):    5. Make the right NUMBER of horizontal lines.
+    # done (continued):    6. Make the horizontal lines each have thickness 3
+    # done (continued):         and colors per the specified pattern.
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
-
-
+    mpt1 = point
+    mpt2 = rg.Point(point.x, point.y + length)
+    master_line = rg.Line(mpt1, mpt2)
+    master_line.attach_to(window)
+    master_line.thickness = 3
+    spt2 = rg.Point(point.x + length, point.y)
+    slave_line_1 = rg.Line(mpt1, spt2)
+    slave_line_1.attach_to(window)
+    slave_line_1.thickness = 3
+    slave_line_1.color = 'magenta'
+    count = 20
+    for k in range(mpt1.y, mpt2.y, delta):
+        if k <= mpt2.y:
+            spt3 = rg.Point(point.x, point.y + .9 * k)
+            spt4 = rg.Point(point.x + length + count, point.y + .9 * k)
+            slave_line_3_up = rg.Line(spt3, spt4)
+            slave_line_3_up.attach_to(window)
+            slave_line_3_up.thickness = 3
+            count = count + 20
+        if k == mpt1.y + 2*delta:
+            slave_line_3_up.color = 'magenta'
+        if k == mpt1.y + 5 * delta:
+            slave_line_3_up.color = 'magenta'
+        if k == mpt1.y + delta:
+            slave_line_3_up.color = 'light green'
+        if k == mpt1.y + 4 * delta:
+            slave_line_3_up.color = 'light green'
+        if k == mpt1.y + 7 * delta:
+            slave_line_3_up.color = 'light green'
+        if k == mpt1.y + 3 * delta:
+            slave_line_3_up.color = 'cyan'
+        if k == mpt1.y:
+            slave_line_3_up.color = 'cyan'
+        if k == mpt1.y + 6* delta:
+            slave_line_3_up.color = 'cyan'
+    window.render()
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------

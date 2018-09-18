@@ -2,11 +2,11 @@
 Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Eric Lee.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
-
+import math
 
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -89,10 +89,19 @@ def problem1a(rectangle, square, thickness, window):
       :type window:    rg.RoseWindow
     """
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # done: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
-
+    square.attach_to(window)
+    rectangle.attach_to(window)
+    p1 = square.center
+    x1 = rectangle.get_center().x
+    y1 = rectangle.get_upper_left_corner().y
+    p2 = rg.Point(x1, y1)
+    line = rg.Line(p1, p2)
+    line.thickness = thickness
+    line.attach_to(window)
+    window.render()
 
 def run_test_problem1b():
     """ Tests the  problem1b   function. """
@@ -137,7 +146,7 @@ def problem1b(point, win, width, height, color):
       Draws an rg.Ellipse for which:
         -- The topmost point of the rg.Ellipse is the given rg.Point.
         -- The width of the rg.Ellipse is the given width.
-        -- The height of the rg.Ellipse is the given width.
+        -- The height of the rg.Ellipse is the given height.
         -- The fill color of the rg.Ellipse is the given color.
       Must render but   ** NOT close **   the window.
 
@@ -149,10 +158,15 @@ def problem1b(point, win, width, height, color):
       :type color:  str
     """
     # --------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # done: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
-
+    p1 = rg.Point(point.x - width / 2, point.y)
+    p2 = rg.Point(point.x + width / 2, point.y + height)
+    oval = rg.Ellipse(p1, p2)
+    oval.attach_to(win)
+    oval.fill_color = color
+    win.render()
 
 # ------------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
